@@ -1,0 +1,41 @@
+---
+- name: Install Apache
+  hosts: all # or you can input hostname or ip address
+  become: true
+
+  tasks:
+    #    - name: Install Apache
+    # command: yum install --quiet -y httpd httpd-devel
+
+    - name: Install Apache
+      #yum: name=httpd state=present
+      yum:
+        name:
+          - httpd
+          - httpd-devel
+        state: present
+    - name: copy config files
+      copy:
+        src: "{{ item.src }}" # another way of doing it is item['src']
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: 0644 # for config files on apache
+      with_items:
+        - src: httpd.conf
+          dest: /etc/httpd/conf/httpd.conf
+        - src: httpd-vhosts
+          dest: /etc/httpd/conf/httpd-vhosts.conf
+    - name: enable apache on boot
+      service:
+        name: httpd
+        state: started
+        enabled: true # for boolean yes or no, true or false
+
+
+          # command: cp httpd.conf /etc/httpd/conf/httpd.conf
+          #- command: cp httpd-vhosts /etc/httpd/conf/httpd-vhosts.conf
+          #- name: start apache and enable at boot
+          # command: service httpd start
+          #- command: chkconfig httpd on
+
