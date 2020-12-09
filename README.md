@@ -28,4 +28,8 @@
 
 - to end the laboratory: `vagrant destroy -f`
 
+- find out what ansible knows about your inventory: `ansible-inventory --list -i inventory`
+
 ## Ansible playbook
+
+- `ansible-playbook -i inventory playbook.yml`
