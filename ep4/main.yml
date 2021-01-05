@@ -1,0 +1,4 @@
+---
+# hosts is going to be ubuntu
+- hosts: solr
+  become: true
