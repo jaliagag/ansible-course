@@ -4,6 +4,7 @@
 - modify the created Vagrant file like the one on this repo, called Vagrantfile_template1
 - `vagrant up` while cd on the folder
 - `ansible multi -i inventory -a "hostname"` - change "hostname" to "df -h" or whatever you want to use as adhoc
+- `ansible -i inventory db -m ping` - send ping test - get pong response
 - `ansible -i inventory db -m setup` - see information about a specific machine - similar to gather facts
 - `ansible -i inventory multi -b -m yum -a "name=ntp state=present"` installs a package - we can use --become instead of -b; by default it's root; -K or --ask-become-pass to request a pass to become sudo (by default vagrant user can become sudo, no need to prompt for password - default pass for vagrant user is 'vagrant')
 - `ansible -i inventory multi -b -m service -a "name=ntpd state=started enabled=yes"` start the service and enable it
@@ -27,7 +28,6 @@
 - `ansible -i inventory multi -b -m git -a "repo=github_url_goes_here dest=/opt/app update=yes version=1.2.3` - update a server git repository
 
 - to end the laboratory: `vagrant destroy -f`
-
 - find out what ansible knows about your inventory: `ansible-inventory --list -i inventory`
 
 ## Ansible playbook

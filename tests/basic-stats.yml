@@ -1,0 +1,12 @@
+---
+- name: "basic status"
+  hosts: all
+  tasks:
+    - name: "w command"
+      shell: w
+    - name: "uname"
+      shell: uname -a
+    - name: "uptime"
+      shell: uptime
+    - name: "fs status"
+      shell: df -h
